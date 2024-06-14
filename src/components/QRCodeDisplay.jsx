@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Heading } from "@chakra-ui/react";
-import { QRCode } from 'qrcode.react';
+import QRCode from 'qrcode.react';
 
 const QRCodeDisplay = ({ value }) => {
   return (
