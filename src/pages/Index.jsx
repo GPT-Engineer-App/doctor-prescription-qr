@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { Container, VStack, Heading, FormControl, FormLabel, Input, Textarea, Button, useToast } from "@chakra-ui/react";
+import QRCodeDisplay from '../components/QRCodeDisplay';
 
 const Index = () => {
   const [patientName, setPatientName] = useState('');
   const [prescription, setPrescription] = useState('');
   const [details, setDetails] = useState('');
+  const [qrValue, setQrValue] = useState('');
   const toast = useToast();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
+    const qrData = `Patient Name: ${patientName}\nPrescription: ${prescription}\nDetails: ${details}`;
+    setQrValue(qrData);
     toast({
       title: "Form Submitted",
       description: "Patient details have been submitted successfully.",
@@ -53,6 +56,7 @@ const Index = () => {
             <Button type="submit" colorScheme="blue" width="full">Submit</Button>
           </VStack>
         </form>
+        {qrValue && <QRCodeDisplay value={qrValue} />}
       </VStack>
     </Container>
   );
